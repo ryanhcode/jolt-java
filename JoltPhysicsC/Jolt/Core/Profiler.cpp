@@ -22,22 +22,7 @@ JPH_NAMESPACE_BEGIN
 //////////////////////////////////////////////////////////////////////////////////////////
 
 Profiler *Profiler::sInstance = nullptr;
-
-#ifdef JPH_SHARED_LIBRARY
-	static thread_local ProfileThread *sInstance = nullptr;
-
-	ProfileThread *ProfileThread::sGetInstance()
-	{
-		return sInstance;
-	}
-
-	void ProfileThread::sSetInstance(ProfileThread *inInstance)
-	{
-		sInstance = inInstance;
-	}
-#else
-	thread_local ProfileThread *ProfileThread::sInstance = nullptr;
-#endif
+thread_local ProfileThread *ProfileThread::sInstance = nullptr;
 
 bool ProfileMeasurement::sOutOfSamplesReported = false;
 

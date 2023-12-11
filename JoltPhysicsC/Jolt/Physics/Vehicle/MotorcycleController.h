@@ -10,10 +10,10 @@ JPH_NAMESPACE_BEGIN
 
 /// Settings of a two wheeled motorcycle (adds a spring to balance the motorcycle)
 /// Note: The motor cycle controller is still in development and may need a lot of tweaks/hacks to work properly!
-class JPH_EXPORT MotorcycleControllerSettings : public WheeledVehicleControllerSettings
+class MotorcycleControllerSettings : public WheeledVehicleControllerSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, MotorcycleControllerSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(MotorcycleControllerSettings)
 
 	// See: VehicleControllerSettings
 	virtual VehicleController *	ConstructController(VehicleConstraint &inConstraint) const override;
@@ -35,7 +35,7 @@ public:
 };
 
 /// Runtime controller class
-class JPH_EXPORT MotorcycleController : public WheeledVehicleController
+class MotorcycleController : public WheeledVehicleController
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

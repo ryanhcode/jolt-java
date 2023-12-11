@@ -12,10 +12,10 @@ class StreamIn;
 class StreamOut;
 
 /// Describes the mass and inertia properties of a body. Used during body construction only.
-class JPH_EXPORT MassProperties
+class MassProperties
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_NON_VIRTUAL(JPH_EXPORT, MassProperties)
+	JPH_DECLARE_SERIALIZABLE_NON_VIRTUAL(MassProperties)
 
 	/// Using eigendecomposition, decompose the inertia tensor into a diagonal matrix D and a right-handed rotation matrix R so that the inertia tensor is \f$R \: D \: R^{-1}\f$.
 	/// @see https://en.wikipedia.org/wiki/Moment_of_inertia section 'Principal axes'

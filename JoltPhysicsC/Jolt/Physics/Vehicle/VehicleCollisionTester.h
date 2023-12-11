@@ -15,7 +15,7 @@ class ObjectLayerFilter;
 class BodyFilter;
 
 /// Class that does collision detection between wheels and ground
-class JPH_EXPORT VehicleCollisionTester : public RefTarget<VehicleCollisionTester>
+class VehicleCollisionTester : public RefTarget<VehicleCollisionTester>
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE
@@ -66,7 +66,7 @@ protected:
 };
 
 /// Collision tester that tests collision using a raycast
-class JPH_EXPORT VehicleCollisionTesterRay : public VehicleCollisionTester
+class VehicleCollisionTesterRay : public VehicleCollisionTester
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE
@@ -86,7 +86,7 @@ private:
 };
 
 /// Collision tester that tests collision using a sphere cast
-class JPH_EXPORT VehicleCollisionTesterCastSphere : public VehicleCollisionTester
+class VehicleCollisionTesterCastSphere : public VehicleCollisionTester
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE
@@ -108,7 +108,7 @@ private:
 };
 
 /// Collision tester that tests collision using a cylinder shape
-class JPH_EXPORT VehicleCollisionTesterCastCylinder : public VehicleCollisionTester
+class VehicleCollisionTesterCastCylinder : public VehicleCollisionTester
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

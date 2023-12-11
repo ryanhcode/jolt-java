@@ -78,7 +78,7 @@ protected:
 };							
 
 /// Pure virtual version of RefTarget
-class JPH_EXPORT RefTargetVirtual
+class RefTargetVirtual
 {
 public:
 	/// Virtual destructor

@@ -15,7 +15,7 @@ JPH_NAMESPACE_BEGIN
 class CollideShapeSettings;
 
 /// Dispatch function, main function to handle collisions between shapes
-class JPH_EXPORT CollisionDispatch
+class CollisionDispatch
 {
 public:
 	/// Collide 2 shapes and pass any collision on to ioCollector

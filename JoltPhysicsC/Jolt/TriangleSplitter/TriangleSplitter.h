@@ -9,7 +9,7 @@
 JPH_NAMESPACE_BEGIN
 
 /// A class that splits a triangle list into two parts for building a tree
-class JPH_EXPORT TriangleSplitter
+class TriangleSplitter
 {
 public:
 	/// Constructor

@@ -15,10 +15,10 @@ JPH_NAMESPACE_BEGIN
 /// Length2 = |BodyPoint2 - FixedPoint2|
 /// The constraint keeps the two line segments constrained so that
 /// MinDistance <= Length1 + Ratio * Length2 <= MaxDistance
-class JPH_EXPORT PulleyConstraintSettings final : public TwoBodyConstraintSettings
+class PulleyConstraintSettings final : public TwoBodyConstraintSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, PulleyConstraintSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(PulleyConstraintSettings)
 
 	// See: ConstraintSettings::SaveBinaryState
 	virtual void				SaveBinaryState(StreamOut &inStream) const override;
@@ -56,7 +56,7 @@ protected:
 };
 
 /// A pulley constraint.
-class JPH_EXPORT PulleyConstraint final : public TwoBodyConstraint
+class PulleyConstraint final : public TwoBodyConstraint
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

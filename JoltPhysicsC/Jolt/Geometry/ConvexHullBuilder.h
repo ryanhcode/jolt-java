@@ -17,7 +17,7 @@
 JPH_NAMESPACE_BEGIN
 
 /// A convex hull builder that tries to create hulls as accurately as possible. Used for offline processing.
-class JPH_EXPORT ConvexHullBuilder : public NonCopyable
+class ConvexHullBuilder : public NonCopyable
 {
 public:
 	// Forward declare

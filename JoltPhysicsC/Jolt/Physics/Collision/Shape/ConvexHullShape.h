@@ -14,10 +14,10 @@
 JPH_NAMESPACE_BEGIN
 
 /// Class that constructs a ConvexHullShape
-class JPH_EXPORT ConvexHullShapeSettings final : public ConvexShapeSettings
+class ConvexHullShapeSettings final : public ConvexShapeSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, ConvexHullShapeSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(ConvexHullShapeSettings)
 
 	/// Default constructor for deserialization
 							ConvexHullShapeSettings() = default;
@@ -37,7 +37,7 @@ public:
 };
 
 /// A convex hull
-class JPH_EXPORT ConvexHullShape final : public ConvexShape
+class ConvexHullShape final : public ConvexShape
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

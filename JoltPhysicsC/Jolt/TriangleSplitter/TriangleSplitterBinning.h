@@ -10,7 +10,7 @@
 JPH_NAMESPACE_BEGIN
 
 /// Binning splitter approach taken from: Realtime Ray Tracing on GPU with BVH-based Packet Traversal by Johannes Gunther et al.
-class JPH_EXPORT TriangleSplitterBinning : public TriangleSplitter
+class TriangleSplitterBinning : public TriangleSplitter
 {
 public:
 	/// Constructor

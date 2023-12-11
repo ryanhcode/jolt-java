@@ -17,7 +17,7 @@ class PhysicsSystem;
 class StateRecorder;
 
 /// Base class for configuration of a character
-class JPH_EXPORT CharacterBaseSettings : public RefTarget<CharacterBaseSettings>
+class CharacterBaseSettings : public RefTarget<CharacterBaseSettings>
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE
@@ -42,7 +42,7 @@ public:
 };
 
 /// Base class for character class
-class JPH_EXPORT CharacterBase : public RefTarget<CharacterBase>, public NonCopyable
+class CharacterBase : public RefTarget<CharacterBase>, public NonCopyable
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

@@ -25,10 +25,10 @@ enum class EOverrideMassProperties : uint8
 };
 
 /// Settings for constructing a rigid body
-class JPH_EXPORT BodyCreationSettings
+class BodyCreationSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_NON_VIRTUAL(JPH_EXPORT, BodyCreationSettings)
+	JPH_DECLARE_SERIALIZABLE_NON_VIRTUAL(BodyCreationSettings)
 
 	/// Constructor
 							BodyCreationSettings() = default;

@@ -2,12 +2,14 @@
 #include "JoltPhysicsC.h"
 #include <assert.h>
 
+#ifdef _MSC_VER
+#define _ALLOW_KEYWORD_MACROS
+#endif
 // We do this because we add some low-level functions which need access to private fields.
 // Also, we static assert offsets of some private fields (see bottom of this file).
-//#define private public // JoltJava: changing access of stdlib stuff
+#define private public
 
 #include <Jolt/Jolt.h>
-#define private public // JoltJava: redefine access here instead
 #include <Jolt/RegisterTypes.h>
 #include <Jolt/Core/Factory.h>
 #include <Jolt/Core/Memory.h>
@@ -28,6 +30,10 @@
 #include <Jolt/Physics/Body/BodyCreationSettings.h>
 #include <Jolt/Physics/Body/BodyActivationListener.h>
 #include <Jolt/Physics/Body/BodyLock.h>
+
+#if defined(_MSC_VER) && defined(_DEBUG)
+#include <Jolt/Physics/PhysicsLock.cpp>
+#endif
 
 JPH_SUPPRESS_WARNINGS
 //--------------------------------------------------------------------------------------------------
@@ -141,7 +147,6 @@ ENSURE_SIZE_ALIGN(JPH::Body,                 JPC_Body)
 ENSURE_SIZE_ALIGN(JPH::BodyLockRead,  JPC_BodyLockRead)
 ENSURE_SIZE_ALIGN(JPH::BodyLockWrite, JPC_BodyLockWrite)
 
-ENSURE_SIZE_ALIGN(JPH::RayCast, JPC_RayCast)
 ENSURE_SIZE_ALIGN(JPH::RRayCast, JPC_RRayCast)
 ENSURE_SIZE_ALIGN(JPH::RayCastResult, JPC_RayCastResult)
 ENSURE_SIZE_ALIGN(JPH::RayCastSettings, JPC_RayCastSettings)
@@ -180,6 +185,14 @@ ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER5,                 JPH::EShapeSubType::Use
 ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER6,                 JPH::EShapeSubType::User6);
 ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER7,                 JPH::EShapeSubType::User7);
 ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER8,                 JPH::EShapeSubType::User8);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX1,          JPH::EShapeSubType::UserConvex1);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX2,          JPH::EShapeSubType::UserConvex2);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX3,          JPH::EShapeSubType::UserConvex3);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX4,          JPH::EShapeSubType::UserConvex4);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX5,          JPH::EShapeSubType::UserConvex5);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX6,          JPH::EShapeSubType::UserConvex6);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX7,          JPH::EShapeSubType::UserConvex7);
+ENSURE_ENUM_EQ(JPC_SHAPE_SUB_TYPE_USER_CONVEX8,          JPH::EShapeSubType::UserConvex8);
 
 ENSURE_ENUM_EQ(JPC_MOTION_TYPE_STATIC,    JPH::EMotionType::Static);
 ENSURE_ENUM_EQ(JPC_MOTION_TYPE_KINEMATIC, JPH::EMotionType::Kinematic);
@@ -247,7 +260,7 @@ static_assert(offsetof(JPH::MotionProperties, mForce) == offsetof(JPC_MotionProp
 static_assert(offsetof(JPH::MotionProperties, mTorque) == offsetof(JPC_MotionProperties, torque));
 static_assert(offsetof(JPH::MotionProperties, mMotionQuality) == offsetof(JPC_MotionProperties, motion_quality));
 static_assert(offsetof(JPH::MotionProperties, mGravityFactor) == offsetof(JPC_MotionProperties, gravity_factor));
-#ifdef JPH_ENABLE_ASSERTS
+#if JPC_ENABLE_ASSERTS == 1
 static_assert(
     offsetof(JPH::MotionProperties, mCachedMotionType) == offsetof(JPC_MotionProperties, cached_motion_type));
 #endif
@@ -269,6 +282,10 @@ static_assert(offsetof(JPH::Body, mID) == offsetof(JPC_Body, id));
 static_assert(offsetof(JPH::BodyLockRead, mBodyLockInterface) == offsetof(JPC_BodyLockRead, lock_interface));
 static_assert(offsetof(JPH::BodyLockRead, mBodyLockMutex) == offsetof(JPC_BodyLockRead, mutex));
 static_assert(offsetof(JPH::BodyLockRead, mBody) == offsetof(JPC_BodyLockRead, body));
+
+static_assert(offsetof(JPH::RayCastResult, mBodyID) == offsetof(JPC_RayCastResult, body_id));
+static_assert(offsetof(JPH::RayCastResult, mFraction) == offsetof(JPC_RayCastResult, fraction));
+static_assert(offsetof(JPH::RayCastResult, mSubShapeID2) == offsetof(JPC_RayCastResult, sub_shape_id));
 
 static_assert(offsetof(JPH::RayCastSettings, mBackFaceMode) == offsetof(JPC_RayCastSettings, back_face_mode));
 static_assert(offsetof(JPH::RayCastSettings, mTreatConvexAsSolid) ==

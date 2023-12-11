@@ -17,10 +17,10 @@ JPH_NAMESPACE_BEGIN
 #endif // JPH_DEBUG_RENDERER
 
 /// Generic properties for a vehicle engine
-class JPH_EXPORT VehicleEngineSettings
+class VehicleEngineSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_NON_VIRTUAL(JPH_EXPORT, VehicleEngineSettings)
+	JPH_DECLARE_SERIALIZABLE_NON_VIRTUAL(VehicleEngineSettings)
 
 	/// Constructor
 							VehicleEngineSettings();
@@ -40,7 +40,7 @@ public:
 };
 
 /// Runtime data for engine
-class JPH_EXPORT VehicleEngine : public VehicleEngineSettings
+class VehicleEngine : public VehicleEngineSettings
 {
 public:
 	/// Multiply an angular velocity (rad/s) with this value to get rounds per minute (RPM)

@@ -12,9 +12,9 @@ class SubShapeIDCreator;
 class CollideShapeSettings;
 
 /// Class that constructs a ScaledShape
-class JPH_EXPORT ScaledShapeSettings final : public DecoratedShapeSettings
+class ScaledShapeSettings final : public DecoratedShapeSettings
 {
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, ScaledShapeSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(ScaledShapeSettings)
 
 	/// Default constructor for deserialization
 									ScaledShapeSettings() = default;
@@ -32,7 +32,7 @@ class JPH_EXPORT ScaledShapeSettings final : public DecoratedShapeSettings
 };
 
 /// A shape that scales a child shape in local space of that shape. The scale can be non-uniform and can even turn it inside out when one or three components of the scale are negative.
-class JPH_EXPORT ScaledShape final : public DecoratedShape
+class ScaledShape final : public DecoratedShape
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

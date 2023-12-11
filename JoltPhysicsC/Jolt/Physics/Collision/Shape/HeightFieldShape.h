@@ -35,10 +35,10 @@ namespace HeightFieldShapeConstants
 };
 
 /// Class that constructs a HeightFieldShape
-class JPH_EXPORT HeightFieldShapeSettings final : public ShapeSettings
+class HeightFieldShapeSettings final : public ShapeSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, HeightFieldShapeSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(HeightFieldShapeSettings)
 
 	/// Default constructor for deserialization
 									HeightFieldShapeSettings() = default;
@@ -89,7 +89,7 @@ public:
 };
 
 /// A height field shape. Cannot be used as a dynamic object.
-class JPH_EXPORT HeightFieldShape final : public Shape
+class HeightFieldShape final : public Shape
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

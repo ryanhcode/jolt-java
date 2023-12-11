@@ -17,10 +17,10 @@ JPH_NAMESPACE_BEGIN
 ///
 /// This image describes the limit settings:
 /// @image html Docs/SwingTwistConstraint.png
-class JPH_EXPORT SwingTwistConstraintSettings final : public TwoBodyConstraintSettings
+class SwingTwistConstraintSettings final : public TwoBodyConstraintSettings
 {
 public:
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, SwingTwistConstraintSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(SwingTwistConstraintSettings)
 
 	// See: ConstraintSettings::SaveBinaryState
 	virtual void				SaveBinaryState(StreamOut &inStream) const override;
@@ -64,7 +64,7 @@ protected:
 /// A swing twist constraint is a specialized constraint for humanoid ragdolls that allows limited rotation only
 ///
 /// @see SwingTwistConstraintSettings for a description of the limits
-class JPH_EXPORT SwingTwistConstraint final : public TwoBodyConstraint
+class SwingTwistConstraint final : public TwoBodyConstraint
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

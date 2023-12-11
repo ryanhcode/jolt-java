@@ -9,9 +9,9 @@
 JPH_NAMESPACE_BEGIN
 
 /// Class that constructs a CapsuleShape
-class JPH_EXPORT CapsuleShapeSettings final : public ConvexShapeSettings
+class CapsuleShapeSettings final : public ConvexShapeSettings
 {
-	JPH_DECLARE_SERIALIZABLE_VIRTUAL(JPH_EXPORT, CapsuleShapeSettings)
+	JPH_DECLARE_SERIALIZABLE_VIRTUAL(CapsuleShapeSettings)
 
 	/// Default constructor for deserialization
 							CapsuleShapeSettings() = default;
@@ -33,7 +33,7 @@ class JPH_EXPORT CapsuleShapeSettings final : public ConvexShapeSettings
 };
 
 /// A capsule, implemented as a line segment with convex radius
-class JPH_EXPORT CapsuleShape final : public ConvexShape
+class CapsuleShape final : public ConvexShape
 {
 public:
 	JPH_OVERRIDE_NEW_DELETE

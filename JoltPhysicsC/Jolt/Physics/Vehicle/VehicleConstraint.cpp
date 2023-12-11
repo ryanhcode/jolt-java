@@ -76,18 +76,17 @@ void VehicleConstraintSettings::RestoreBinaryState(StreamIn &inStream)
 }
 
 VehicleConstraint::VehicleConstraint(Body &inVehicleBody, const VehicleConstraintSettings &inSettings) :
-	Constraint(inSettings),
-	mBody(&inVehicleBody),
-	mForward(inSettings.mForward),
-	mUp(inSettings.mUp),
-	mWorldUp(inSettings.mUp)
+	Constraint(inSettings)
 {
 	// Check sanity of incoming settings
-	JPH_ASSERT(inSettings.mUp.IsNormalized());
 	JPH_ASSERT(inSettings.mForward.IsNormalized());
+	JPH_ASSERT(inSettings.mUp.IsNormalized());
 	JPH_ASSERT(!inSettings.mWheels.empty());
 
-	// Store max pitch/roll angle
+	// Store general properties
+	mBody = &inVehicleBody;
+	mUp = inSettings.mUp;
+	mForward = inSettings.mForward;
 	SetMaxPitchRollAngle(inSettings.mMaxPitchRollAngle);
 
 	// Copy anti-rollbar settings
@@ -157,9 +156,6 @@ RMat44 VehicleConstraint::GetWheelWorldTransform(uint inWheelIndex, Vec3Arg inWh
 void VehicleConstraint::OnStep(float inDeltaTime, PhysicsSystem &inPhysicsSystem)
 {
 	JPH_PROFILE_FUNCTION();
-
-	// Calculate new world up vector by inverting gravity
-	mWorldUp = (-inPhysicsSystem.GetGravity()).NormalizedOr(mWorldUp);
 
 	// Callback on our controller
 	mController->PreCollide(inDeltaTime, inPhysicsSystem);
@@ -324,15 +320,15 @@ void VehicleConstraint::CalculateWheelContactPoint(const Wheel &inWheel, Vec3 &o
 void VehicleConstraint::CalculatePitchRollConstraintProperties(float inDeltaTime, RMat44Arg inBodyTransform)
 {
 	// Check if a limit was specified
-	if (mCosMaxPitchRollAngle > -1.0f)
+	if (mCosMaxPitchRollAngle < JPH_PI)
 	{
 		// Calculate cos of angle between world up vector and vehicle up vector
 		Vec3 vehicle_up = inBodyTransform.Multiply3x3(mUp);
-		mCosPitchRollAngle = mWorldUp.Dot(vehicle_up);
+		mCosPitchRollAngle = mUp.Dot(vehicle_up);
 		if (mCosPitchRollAngle < mCosMaxPitchRollAngle)
 		{
 			// Calculate rotation axis to rotate vehicle towards up
-			Vec3 rotation_axis = mWorldUp.Cross(vehicle_up);
+			Vec3 rotation_axis = mUp.Cross(vehicle_up);
 			float len = rotation_axis.Length();
 			if (len > 0.0f)
 				mPitchRollRotationAxis = rotation_axis / len;
