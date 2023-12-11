@@ -36,22 +36,6 @@ jobs:
           VERSION_TYPE=$(./gradlew -q --console=plain --no-daemon printVersionType)
           echo VERSION_TYPE=$VERSION_TYPE
           echo VERSION_TYPE=$VERSION_TYPE >> $GITHUB_ENV
-      - name: "Publish snapshot"
-        if: ${{ env.VERSION_TYPE == 'snapshot' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: ./gradlew publish
-        env:
-          CI_PUBLISH_CORE: true
-          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
-          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
-      - name: "Publish release"
-        if: ${{ env.VERSION_TYPE == 'release' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: ./gradlew -PforceSign=true publishToSonatype closeSonatypeStagingRepository
-        env:
-          CI_PUBLISH_CORE: true
-          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
-          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
 
   windows-mingw:
     name: "Windows MinGW GCC"
@@ -85,19 +69,3 @@ jobs:
           VERSION_TYPE=$(./gradlew -q --console=plain --no-daemon printVersionType)
           echo VERSION_TYPE=$VERSION_TYPE
           echo VERSION_TYPE=$VERSION_TYPE >> $GITHUB_ENV
-      - name: "Publish snapshot"
-        if: ${{ env.VERSION_TYPE == 'snapshot' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: ./gradlew publish -x requireClean
-        env:
-          CI_PUBLISH_CORE: false
-          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
-          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
-      - name: "Publish release"
-        if: ${{ env.VERSION_TYPE == 'release' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: ./gradlew -PforceSign=true publishToSonatype closeSonatypeStagingRepository -x requireClean
-        env:
-          CI_PUBLISH_CORE: false
-          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
-          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
